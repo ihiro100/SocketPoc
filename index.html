@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>POC</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        function sendSomething() {
+
+            console.log(document.getElementsByName("msg")[0].value);
+            
+            
+            var socket = io('http://localhost');
+            socket.on('news', function (data) {
+                console.log(data);
+                socket.emit('my other event', {
+                    my: 'data'
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <!-- <form> -->
+            <h1>Chat</h1>
+        
+            <label for="msg"><b>Message</b></label> <br> <br>   
+            <textarea placeholder="Type message.." name="msg" required></textarea>
+            <button type="submit" onclick="sendSomething()">Send</button>
+        
+            <!-- <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
+          <!-- </form> -->
+
+        <!-- <button onclick="sendSomething()">Click here</button> -->
+    </div>
+
+</body>
+
+</html>
